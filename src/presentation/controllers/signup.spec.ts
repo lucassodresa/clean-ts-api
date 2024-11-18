@@ -38,8 +38,8 @@ describe('SignUp Controller', () => {
     const sut = makeSut()
     const httpRequest = {
       body: {
-        email: 'any_email@example.com',
         name: 'any_name',
+        email: 'any_email@example.com',
         passwordConfirmation: 'any_password'
 
       }
@@ -48,12 +48,12 @@ describe('SignUp Controller', () => {
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse.body).toEqual(new MissingParamError('password'))
   })
-  test('Should return 400 if no password confirmationis provided', () => {
+  test('Should return 400 if no password confirmation is provided', () => {
     const sut = makeSut()
     const httpRequest = {
       body: {
-        email: 'any_email@example.com',
         name: 'any_name',
+        email: 'any_email@example.com',
         password: 'any_password'
       }
     }
