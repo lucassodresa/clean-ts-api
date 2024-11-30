@@ -56,4 +56,19 @@ describe('Account MongoDB Repository', () => {
     const account = await sut.loadByEmail('any_email@mail.com')
     expect(account).toBeNull()
   })
+
+  test('should update the account accessToken on updateAccessToken success', async () => {
+    const sut = makeSut()
+    const res = await accountCollection.insertOne({
+      name: 'any_name',
+      email: 'any_email@mail.com',
+      password: 'any_password'
+    })
+    const { _id: userId } = res.ops[0]
+    expect(res.ops[0]?.accessToken).toBeUndefined()
+    await sut.updateAccessToken(userId, 'any_token')
+    const account = await accountCollection.findOne({ _id: userId })
+    expect(account).toBeDefined()
+    expect(account.accessToken).toBe('any_token')
+  })
 })
