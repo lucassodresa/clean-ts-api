@@ -1,0 +1,18 @@
+meta {
+  name: Login
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{BASE_URL}}/login
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "lucas.sodresa@gmail.com",
+    "password" : "123"
+  }
+}
