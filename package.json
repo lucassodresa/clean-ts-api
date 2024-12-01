@@ -49,6 +49,9 @@
     "mongodb": "^3.5.1",
     "validator": "^12.1.0"
   },
+  "engines": {
+    "node": "12.x"
+  },
   "volta": {
     "node": "12.22.12"
   }
