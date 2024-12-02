@@ -4,8 +4,9 @@
   "description": "NodeJs Rest API using TDD, Clean Architecture and Typescript",
   "scripts": {
     "build": "rimraf dist && tsc",
+    "up": "npm run build && docker-compose up -d",
+    "down": "docker-compose down",
     "start": "node dist/main/server.js",
-    "dev": "sucrase-node src/main/server.ts",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand --logHeapUsage",
     "test:verbose": "jest --passWithNoTests --runInBand",
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
@@ -37,7 +38,6 @@
     "jest": "^24.9.0",
     "lint-staged": "^10.5.4",
     "rimraf": "^3.0.2",
-    "sucrase": "^3.12.1",
     "supertest": "^4.0.2",
     "ts-jest": "^24.3.0",
     "typescript": "^3.7.4"
