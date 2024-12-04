@@ -13,11 +13,13 @@ services:
     image: clean-ts-api
     build: .
     restart: always
-    command: npm start
+    command: npm run debug
     volumes:
       - ./dist:/usr/src/dist
+      - ./package.json:/usr/src/package.json
     ports:
       - "5050:5050"
+      - "9222:9222"
     links:
       - mongodb
     
