@@ -1,0 +1,23 @@
+meta {
+  name: AddSurvey
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{BASE_URL}}/surveys
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "question": "Question",
+    "answers": [
+      {
+        "image": "image",
+        "answer": "Answer"
+      }
+    ]
+  }
+}
