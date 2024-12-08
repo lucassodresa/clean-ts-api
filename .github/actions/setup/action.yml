@@ -11,4 +11,4 @@ runs:
         cache: 'npm'
     - name: Install dependencies
       shell: bash
-      run: npm ci --ignore-scripts
+      run: npm i
