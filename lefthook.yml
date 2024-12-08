@@ -1,0 +1,12 @@
+pre-commit:
+  parallel: true
+  commands:
+    lint-staged:
+      run: lint-staged
+
+pre-push:
+  parallel: true
+  commands:
+    test:
+      run: npm run test:ci
+
