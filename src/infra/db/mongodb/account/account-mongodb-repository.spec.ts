@@ -2,7 +2,7 @@ import { Collection } from 'mongodb'
 import { MongoHelper } from '../helpers/mongo-helper'
 import { AccountMongoDbRepository } from './account-mongodb-repository'
 
-let accountCollection: Collection = null
+let accountCollection: Collection
 
 describe('Account MongoDB Repository', () => {
   beforeAll(async () => {
