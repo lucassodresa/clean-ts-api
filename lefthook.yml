@@ -2,7 +2,7 @@ pre-commit:
   parallel: true
   commands:
     lint-staged:
-      run: lint-staged
+      run: npx lint-staged
 
 pre-push:
   parallel: true

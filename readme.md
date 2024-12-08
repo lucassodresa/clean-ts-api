@@ -72,3 +72,7 @@ O objetivo do treinamento é mostrar como criar uma API com uma arquitetura bem 
 * Deploy no Heroku
 * Uso de breakpoints no Typescript
 * Uso correto de tags no Git
+
+
+
+test docs
