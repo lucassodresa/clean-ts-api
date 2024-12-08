@@ -39,7 +39,6 @@
     "git-commit-msg-linter": "^2.4.2",
     "jest": "^24.9.0",
     "lefthook": "^1.9.0",
-    "lint-staged": "^10.0.0",
     "rimraf": "^3.0.2",
     "supertest": "^4.0.2",
     "ts-jest": "^24.3.0",
