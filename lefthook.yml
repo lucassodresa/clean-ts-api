@@ -3,11 +3,11 @@ pre-commit:
   commands:
     lint:fix:
       glob: "*.{js,ts,jsx,tsx}"
-      run: npm run lint:fix -- {staged_files}
+      run: npm run lint:fix {staged_files}
       stage_fixed: true
     test:
       glob: "*.{js,ts,jsx,tsx}"
-      run: npm run test:staged -- {staged_files}
+      run: npm run test:staged {staged_files}
 
 pre-push:
   parallel: true
