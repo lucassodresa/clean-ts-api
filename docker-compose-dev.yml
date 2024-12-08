@@ -1,0 +1,16 @@
+services: 
+  mongodb:
+    extends:
+      file: docker-compose-prod.yml
+      service: mongodb
+      
+  api:
+    extends:
+      file: docker-compose-prod.yml
+      service: api
+    container_name: api-dev
+    command: bash -c "npm install --only=prod && npm run debug"
+    ports:
+      - "5050:5050"
+      - "9222:9222"
+    
