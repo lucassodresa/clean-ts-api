@@ -1,0 +1,33 @@
+name: Clean TS API
+on:
+  push:
+    branches: 
+      - "master"
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 12.x
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm i
+  
+  test:unit:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Test Unit
+        run: npm run test:unit
+
+  test:integration:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Test Integration
+        run: npm run test:integration
