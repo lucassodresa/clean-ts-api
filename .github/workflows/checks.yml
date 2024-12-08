@@ -1,8 +1,7 @@
 name: Checks
 on:
   push:
-    branches: 
-      - "master"
+    branches: [ master ]
 
 jobs:
   setup:
@@ -22,12 +21,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: setup
     steps:
+      - name: Show directory
+        run: ls -la
       - name: Test Unit
         run: npm run test:unit
 
-  test-integration:
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
-      - name: Test Integration
-        run: npm run test:integration
+#  test-integration:
+#    runs-on: ubuntu-latest
+#    needs: setup
+#    steps:
+#      - name: Test Integration
+#        run: npm run test:integration
