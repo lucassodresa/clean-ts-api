@@ -24,7 +24,7 @@ jobs:
           path: node_modules
 
       - name: Install dependencies
-        if: ${{ hashFiles('node_modules') != '' }}
+        if: ${{ hashFiles('node_modules') == '' }}
         run: npm ci
 
       - name: Show folder
@@ -53,12 +53,12 @@ jobs:
           path: node_modules
 
       - name: Install dependencies
-        if: ${{ hashFiles('node_modules') != '' }}
+        if: ${{ hashFiles('node_modules') == '' }}
         run: npm ci
 
       - name: Show folder
         run: ls -la
-        
+
       - name: Lint
         run: npm run lint:all
 
