@@ -24,12 +24,12 @@ jobs:
         run: echo "NODE_MODULES_EXISTS=true" >> $GITHUB_ENV
 
       - name: Install dependencies
-        if: !$NODE_MODULES_EXISTS
+        if: ${{ env.NODE_MODULES_EXISTS }} != 'true'
         run: npm ci
       - name: Show folder
         run: ls -la
       - name: Upload node_modules
-        if: !$NODE_MODULES_EXISTS
+        if: ${{ env.NODE_MODULES_EXISTS }} != 'true'
         uses: actions/upload-artifact@v4
         with:
           name: node_modules-${{ hashFiles('./package-lock.json') }}
