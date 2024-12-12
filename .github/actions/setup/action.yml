@@ -23,8 +23,8 @@ runs:
 
     - name: Install dependencies
       if: ${{ hashFiles('node_modules') == '' }}
-      run: npm ci
       shell: bash
+      run: npm ci
 
     - name: Show folder
       shell: bash

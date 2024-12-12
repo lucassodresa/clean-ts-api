@@ -29,4 +29,5 @@ jobs:
         with:
           node-version: 12.x
       - name: Test CI
+        shell: bash
         run: npm run test:ci
