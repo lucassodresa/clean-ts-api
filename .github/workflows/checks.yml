@@ -30,4 +30,4 @@ jobs:
           node-version: 12.x
 
       - name: Test CI
-        run: npm run test:unit
+        run: npm run test:verbose
