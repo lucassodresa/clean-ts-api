@@ -4,11 +4,6 @@ on:
     branches: [ master ]
 
 jobs:
-  setup:
-    uses: ./.github/actions/setup
-    with:
-      node-version: 12.x
-
   lint:
     runs-on: ubuntu-latest
     steps: 
