@@ -24,10 +24,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup
-        uses: ./.github/actions/setup
+#      - name: Setup
+#        uses: ./.github/actions/setup
+#        with:
+#          node-version: 12.x
+
+      - name: Setup Node 12.x
+        uses: actions/setup-node@v4
         with:
           node-version: 12.x
+
+      - run: npm i
+
       - name: Test CI
-        shell: bash
         run: npm run test:ci
