@@ -15,7 +15,7 @@ jobs:
           node-version: 12.x
           cache: 'npm'
       - name: Install dependencies
-        run: npm i
+        run: npm ci
       - name: Show folder
         run: ls -la
       - name: Upload node_modules
@@ -35,7 +35,7 @@ jobs:
       - name: Download node_modules
         uses: actions/download-artifact@v3
         with:
-          name: node_modules-${{ hashFiles('./package-lock.json') }}
+          name: node_modules-${{ hashFiles('package-lock.json') }}
           path: node_modules
       - name: Lint
         run: npm run lint:all
