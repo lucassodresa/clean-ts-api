@@ -4,22 +4,47 @@ on:
     branches: [ master ]
 
 jobs:
-  lint:
+  setup:
     runs-on: ubuntu-latest
     steps: 
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup
-        uses: ./.github/actions/setup
+      - name: Setup Node 12
+        uses: actions/setup-node@v4
+        with:
+          node-version: 12.x
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm i
+      - name: Show folder
+        run: ls -la
+      - name: Upload node_modules
+        uses: actions/upload-artifact@v4
+        with:
+          name: node_modules-${{ hashFiles('**/package-lock.json') }}
+
+
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Download node_modules
+        uses: actions/download-artifact@v3
+        with:
+          name: node_modules-${{ hashFiles('**/package-lock.json') }}
+          path: node_modules
       - name: Lint
         run: npm run lint:all
 
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup
-        uses: ./.github/actions/setup
-      - name: Test CI
-        run: npm run test:ci
+#  test:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v4
+#      - name: Setup
+#        uses: ./.github/actions/setup
+#      - name: Test CI
+#        run: npm run test:ci

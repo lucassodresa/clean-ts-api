@@ -10,16 +10,17 @@ services:
 
   api:
     container_name: api-prod
+    restart: always
     image: node:12
     working_dir: /usr/src/
-    build: .
-    restart: always
-    command: bash -c "npm i --production && npm run start"
+    command: bash -c "npm i --only=prod && npm run start:debug"
     volumes:
       - ./dist/:/usr/src/dist/
       - ./package.json:/usr/src/package.json
+      - ./package-lock.json:/usr/src/package-lock.json
     ports:
       - "5050:5050"
+      - "9222:9222"
     links:
       - mongodb
     

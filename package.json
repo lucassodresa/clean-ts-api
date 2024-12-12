@@ -4,13 +4,11 @@
   "description": "NodeJs Rest API using TDD, Clean Architecture and Typescript",
   "scripts": {
     "build": "rimraf dist && tsc",
-    "build:watch": "tsc -w",
+    "build:watch": "npm run build -- -w",
     "start": "node dist/main/server.js",
-    "debug": "nodemon -L --watch ./dist --inspect=0.0.0.0:9222 --nolazy ./dist/main/server.js",
-    "up:dev": "concurrently \"npm run build:watch\" \"docker-compose -f docker-compose-dev.yml up -d --remove-orphans\"",
-    "up:prod": "npm run build && docker-compose -f docker-compose-prod.yml up -d --remove-orphans",
-    "down:dev": "docker-compose -f docker-compose-dev.yml down",
-    "down:prod": "docker-compose -f docker-compose-prod.yml down",
+    "start:debug": "nodemon -L --watch ./dist --inspect=0.0.0.0:9222 --nolazy ./dist/main/server.js",
+    "up": "npm run build && docker-compose up -d --remove-orphans",
+    "down": "docker-compose down",
     "lint:all": "eslint 'src/**'",
     "lint:fix": "eslint --fix",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand --logHeapUsage",
@@ -53,8 +51,8 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.5",
-    "validator": "^12.2.0",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "validator": "^12.2.0"
   },
   "engines": {
     "node": "12.x"
