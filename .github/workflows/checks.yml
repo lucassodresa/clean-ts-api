@@ -28,7 +28,5 @@ jobs:
         uses: ./.github/actions/setup
         with:
           node-version: 12.x
-
       - name: Test CI
-        shell: bash
         run: npm run test:ci
