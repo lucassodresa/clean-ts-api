@@ -1,33 +1,32 @@
 name: setup
-
 inputs:
   node-version:
     description: "Node version"
     required: true
     type: string
 
-jobs:
-  setup:
-    steps: 
-      - name: Setup Node ${{ inputs.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ inputs.node-version }}
-          cache: 'npm'
+runs:
+  using: "composite"
+  steps: 
+    - name: Setup Node ${{ inputs.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: 'npm'
 
-      - name: Cache node_modules
-        id: cache-node-modules
-        uses: actions/cache@v4
-        with:
-          key: node_modules-${{ hashFiles('package-lock.json') }}
-          path: node_modules
+    - name: Cache node_modules
+      id: cache-node-modules
+      uses: actions/cache@v4
+      with:
+        key: node_modules-${{ hashFiles('package-lock.json') }}
+        path: node_modules
 
-      - name: Install dependencies
-        if: ${{ hashFiles('node_modules') == '' }}
-        run: npm ci
+    - name: Install dependencies
+      if: ${{ hashFiles('node_modules') == '' }}
+      run: npm ci
 
-      - name: Show folder
-        run: ls -la
+    - name: Show folder
+      run: ls -la
 
 
 
