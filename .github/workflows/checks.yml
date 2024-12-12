@@ -37,6 +37,8 @@ jobs:
         with:
           name: node_modules-${{ hashFiles('package-lock.json') }}
           path: node_modules
+      - name: Show folder
+        run: ls -la
       - name: Lint
         run: npm run lint:all
 
