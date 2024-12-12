@@ -36,4 +36,5 @@ jobs:
         run: npm -v
 
       - name: Test CI
+        shell: bash
         run: npm run test:verbose
