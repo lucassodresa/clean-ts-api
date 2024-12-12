@@ -9,34 +9,26 @@ jobs:
     steps: 
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup Node 12
         uses: actions/setup-node@v4
         with:
           node-version: 12.x
           cache: 'npm'
-      - name: Download node_modules
-        uses: actions/download-artifact@v4
+
+      - name: Cache node_modules
+        id: cache-node-modules
+        uses: actions/cache@v4
         with:
-          name: node_modules-${{ hashFiles('package-lock.json') }}
+          key: node_modules-${{ hashFiles('package-lock.json') }}
           path: node_modules
-      - name: Set var if node_modules exists
-        if: failure()
-        run: echo "NODE_MODULES_EXISTS=true" >> $GITHUB_ENV
 
       - name: Install dependencies
-        if: failure() && ${{ env.NODE_MODULES_EXISTS }} != 'true'
+        if: ${{ hashFiles('node_modules') != '' }}
         run: npm ci
 
       - name: Show folder
-        if: failure()
         run: ls -la
-      
-      - name: Upload node_modules
-        if: failure() && ${{ env.NODE_MODULES_EXISTS }} != 'true'
-        uses: actions/upload-artifact@v4
-        with:
-          name: node_modules-${{ hashFiles('./package-lock.json') }}
-          path: node_modules
 
 
 
