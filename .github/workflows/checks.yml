@@ -29,12 +29,6 @@ jobs:
         with:
           node-version: 12.x
 
-      - name: NODE VERSION
-        run: node -v
-
-      - name: NPM VERSION
-        run: npm -v
-
       - name: Test CI
         shell: bash
         run: npm run test:verbose
