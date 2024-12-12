@@ -26,9 +26,5 @@ runs:
       shell: bash
       run: npm ci
 
-    - name: Show folder
-      shell: bash
-      run: ls -la
-
 
 
