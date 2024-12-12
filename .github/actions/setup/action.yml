@@ -1,11 +1,10 @@
 name: setup
-on:
-  workflow_call:
-    inputs:
-      node-version:
-        description: "Node version"
-        required: true
-        type: string
+
+inputs:
+  node-version:
+    description: "Node version"
+    required: true
+    type: string
 
 jobs:
   setup:
