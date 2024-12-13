@@ -11,7 +11,7 @@
     "down": "docker-compose down",
     "lint:all": "eslint 'src/**'",
     "lint:fix": "eslint --fix",
-    "test": "jest --noStackTrace --runInBand --logHeapUsage",
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand --logHeapUsage",
     "test:verbose": "jest --passWithNoTests --runInBand",
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
     "test:integration": "npm test -- --watch -c jest-integration-config.js",
