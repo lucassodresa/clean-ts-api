@@ -30,7 +30,7 @@ jobs:
           node-version: 12.x
 
       - name: Test CI
-        run: npm run test:verbose
+        run: npm run test:ci
         
       - name: Log node_modules
         run: ls -la node_modules/*
