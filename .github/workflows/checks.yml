@@ -31,6 +31,3 @@ jobs:
 
       - name: Test CI
         run: npm run test:ci
-        
-      - name: Log node_modules
-        run: ls -la scr/*
