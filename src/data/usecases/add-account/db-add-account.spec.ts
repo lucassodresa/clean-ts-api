@@ -107,6 +107,6 @@ describe('DbAddAccount UseCase', () => {
     const { sut, loadAccountByEmailRepositoryStub } = makeSut()
     const loadByEmailSpy = jest.spyOn(loadAccountByEmailRepositoryStub, 'loadByEmail')
     await sut.add(makeFakeAccountData())
-    expect(loadByEmailSpy).toBeCalledWith('valid_email@mail.co')
+    expect(loadByEmailSpy).toBeCalledWith('valid_email@mail.com')
   })
 })
