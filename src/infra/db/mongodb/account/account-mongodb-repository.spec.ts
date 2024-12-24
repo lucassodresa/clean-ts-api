@@ -72,7 +72,7 @@ describe('Account MongoDB Repository', () => {
       const { _id: userId } = res.ops[0]
       expect(res.ops[0]?.accessToken).toBeUndefined()
       await sut.updateAccessToken(userId, 'any_token')
-      const account = await accountCollection.findOne({ _id: userId })
+      const account = await accountCollection.findOne({ _id: MongoHelper.objectId(userId) })
       expect(account).toBeDefined()
       expect(account.accessToken).toBe('any_token')
     })

@@ -18,7 +18,7 @@ const makeAccessToken = async (): Promise<string> => {
   const { _id: userId } = res.ops[0]
   const accessToken = sign({ id: userId }, env.jwtSecret)
   await accountCollection.updateOne({
-    _id: userId
+    _id: MongoHelper.objectId(userId)
   }, {
     $set: { accessToken }
   })

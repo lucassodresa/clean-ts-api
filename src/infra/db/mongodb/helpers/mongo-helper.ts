@@ -33,7 +33,7 @@ export const MongoHelper = {
     }
   },
 
-  objectId: (id: string) => {
+  objectId: (id: string): ObjectId => {
     return new ObjectId(id)
   }
 }
