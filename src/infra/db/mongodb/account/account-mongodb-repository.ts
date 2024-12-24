@@ -21,7 +21,7 @@ export class AccountMongoDbRepository implements AddAccountRepository, LoadAccou
 
   async updateAccessToken (id: string, token: string): Promise<void> {
     const accountCollection = await MongoHelper.getCollection('accounts')
-    await accountCollection.updateOne({ _id: id }, { $set: { accessToken: token } })
+    await accountCollection.updateOne({ _id: MongoHelper.objectId(id) }, { $set: { accessToken: token } })
   }
 
   async loadByToken (token: string, role?: string): Promise<AccountModel> {
@@ -30,7 +30,7 @@ export class AccountMongoDbRepository implements AddAccountRepository, LoadAccou
       accessToken: token,
 
       $or: [
-        { role: role },
+        { role },
         { role: 'admin' }
       ]
     })
