@@ -1,6 +1,5 @@
 services: 
   mongodb:
-    container_name: mongodb-container
     image: mongo:3
     restart: always
     volumes:
@@ -9,7 +8,6 @@ services:
       - "27017:27017"
 
   api:
-    container_name: api-prod
     restart: always
     image: node:12
     working_dir: /usr/src/

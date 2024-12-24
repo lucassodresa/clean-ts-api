@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "description": "NodeJs Rest API using TDD, Clean Architecture and Typescript",
   "scripts": {
-    "build": "rimraf dist && tsc",
+    "build": "rimraf dist && tsc -p tsconfig.build.json",
     "build:watch": "npm run build -- -w",
     "start": "node dist/main/server.js",
     "start:debug": "nodemon -L --watch ./dist --inspect=0.0.0.0:9222 --nolazy ./dist/main/server.js",
@@ -51,6 +51,7 @@
     "bcrypt": "^3.0.8",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
+    "module-alias": "^2.2.2",
     "mongodb": "^3.5.5",
     "nodemon": "^2.0.2",
     "validator": "^12.2.0"
@@ -60,5 +61,8 @@
   },
   "volta": {
     "node": "12.22.12"
+  },
+  "_moduleAliases": {
+    "@": "dist"
   }
 }
