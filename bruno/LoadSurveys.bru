@@ -1,13 +1,17 @@
 meta {
-  name: AddSurvey
+  name: LoadSurveys
   type: http
-  seq: 4
+  seq: 5
 }
 
-post {
+get {
   url: {{BASE_URL}}/surveys
-  body: json
+  body: none
   auth: none
+}
+
+params:query {
+  : 
 }
 
 headers {
