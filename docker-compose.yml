@@ -12,6 +12,8 @@ services:
     image: node:12
     working_dir: /usr/src/
     command: bash -c "npm i --only=prod && npm run start:debug"
+    environment:
+      - MONGO_URL=mongodb://mongodb:27017/clean-ts-api
     volumes:
       - ./dist/:/usr/src/dist/
       - ./package.json:/usr/src/package.json
