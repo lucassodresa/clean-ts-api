@@ -1,12 +1,12 @@
 meta {
-  name: LoadSurveys
+  name: SaveSurveyResult
   type: http
-  seq: 5
+  seq: 6
 }
 
-get {
-  url: {{BASE_URL}}/surveys
-  body: none
+put {
+  url: {{BASE_URL}}/surveys/676a8da2e6df7e002cc6d4e5/results
+  body: json
   auth: none
 }
 
@@ -16,12 +16,6 @@ headers {
 
 body:json {
   {
-    "question": "Question",
-    "answers": [
-      {
-        "image": "image",
-        "answer": "Answer"
-      }
-    ]
+    "answer": "Answer"
   }
 }
