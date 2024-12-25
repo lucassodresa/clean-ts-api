@@ -6,7 +6,8 @@ import { forbidden, serverError } from '@/presentation/helpers/http/http-helper'
 const makeFakeRequest = (): HttpRequest => ({
   params: {
     surveyId: 'any_survey_id'
-  }
+  },
+  body: { answer: 'any_answer' }
 })
 
 const makeFakeSurvey = (): SurveyModel => (
@@ -66,5 +67,15 @@ describe('SaveSurveyResult Controller', () => {
     jest.spyOn(loadSurveyByIdStub, 'loadById').mockRejectedValueOnce(new Error())
     const httpResponse = await sut.handle({})
     expect(httpResponse).toEqual(serverError(new Error()))
+  })
+
+  test('Should return 403 if an invalid answer is provided', async () => {
+    const { sut } = makeSut()
+    const httpRequest = {
+      ...makeFakeRequest(),
+      body: { answer: 'wrong_answer' }
+    }
+    const httpResponse = await sut.handle(httpRequest)
+    expect(httpResponse).toEqual(forbidden(new InvalidParamError('answer')))
   })
 })
