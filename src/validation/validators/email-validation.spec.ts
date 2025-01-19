@@ -7,7 +7,6 @@ import { throwError } from '@/domain/test'
 type SutTypes = {
   sut: EmailValidation
   emailValidatorStub: EmailValidator
-
 }
 
 const makeSut = (): SutTypes => {
@@ -16,7 +15,6 @@ const makeSut = (): SutTypes => {
   return {
     sut,
     emailValidatorStub
-
   }
 }
 
