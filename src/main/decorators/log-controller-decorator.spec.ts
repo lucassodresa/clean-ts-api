@@ -25,7 +25,7 @@ const makeFakeRequest = (): HttpRequest => (
 const makeController = (): Controller => {
   class ControllerStub implements Controller {
     async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
-      return new Promise(resolve => resolve(ok(mockAccountModel())))
+      return Promise.resolve(ok(mockAccountModel()))
     }
   }
   return new ControllerStub()
