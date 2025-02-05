@@ -1,6 +1,6 @@
 import { SurveyResultMongoDbRepository } from './survey-result-mongodb-repository'
 import { MongoHelper } from '../helpers/mongo-helper'
-import { Collection } from 'mongodb'
+import { Collection, ObjectId } from 'mongodb'
 import { SurveyModel } from '@/domain/models/survey'
 import { AccountModel } from '@/domain/models/account'
 
@@ -23,7 +23,7 @@ const makeSurvey = async (): Promise<SurveyModel> => {
     date: new Date()
   })
   const survey = res.ops[0]
-  return survey
+  return MongoHelper.map(survey)
 }
 
 const makeAccount = async (): Promise<AccountModel> => {
@@ -34,7 +34,7 @@ const makeAccount = async (): Promise<AccountModel> => {
     date: new Date()
   })
   const account = res.ops[0]
-  return account
+  return MongoHelper.map(account)
 }
 
 const makeSut = (): SurveyResultMongoDbRepository => {
@@ -74,20 +74,21 @@ describe('SurveyResult MongoDB Repository', () => {
       })
 
       expect(surveyResult).toBeTruthy()
-      expect(surveyResult.id).toBeTruthy()
-      expect(surveyResult.answer).toBe(survey.answers[0].answer)
+      expect(String(surveyResult.surveyId)).toBe(survey.id)
+      expect(surveyResult.answers[0].answer).toBe(survey.answers[0].answer)
+      expect(surveyResult.answers[0].count).toBe(1)
+      expect(surveyResult.answers[0].percent).toBe(100)
     })
 
     test('should update survey result if it is not new', async () => {
       const survey = await makeSurvey()
       const account = await makeAccount()
-      const res = await surveyResultCollection.insertOne({
-        surveyId: survey.id,
-        accountId: account.id,
+      await surveyResultCollection.insertOne({
+        surveyId: new ObjectId(survey.id),
+        accountId: new ObjectId(account.id),
         answer: survey.answers[0].answer,
         date: new Date()
       })
-      const existentSurveyResult = res.ops[0]
       const sut = makeSut()
       const surveyResult = await sut.save({
         surveyId: survey.id,
@@ -96,8 +97,10 @@ describe('SurveyResult MongoDB Repository', () => {
         date: new Date()
       })
       expect(surveyResult).toBeTruthy()
-      expect(surveyResult.id).toBe(String(existentSurveyResult._id))
-      expect(surveyResult.answer).toBe(survey.answers[1].answer)
+      expect(String(surveyResult.surveyId)).toBe(survey.id)
+      expect(surveyResult.answers[0].answer).toBe(survey.answers[1].answer)
+      expect(surveyResult.answers[0].count).toBe(1)
+      expect(surveyResult.answers[0].percent).toBe(100)
     })
   })
 })
