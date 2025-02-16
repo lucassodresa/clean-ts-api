@@ -13,11 +13,11 @@ const makeSurvey = async (): Promise<SurveyModel> => {
     question: 'any_question',
     answers: [
       {
-        image: 'any_image',
-        answer: 'any_answer'
+        answer: 'any_answer',
+        image: 'any_image'
       },
       {
-        answer: 'any_answer'
+        answer: 'other_answer'
       }
     ],
     date: new Date()
@@ -52,13 +52,14 @@ describe('SurveyResult MongoDB Repository', () => {
 
   beforeEach(async () => {
     surveyCollection = await MongoHelper.getCollection('surveys')
-    await surveyCollection.deleteMany({})
-
     surveyResultCollection = await MongoHelper.getCollection('surveyResults')
-    await surveyResultCollection.deleteMany({})
-
     accountCollection = await MongoHelper.getCollection('accounts')
-    await accountCollection.deleteMany({})
+
+    await Promise.all([
+      surveyCollection.deleteMany({}),
+      surveyResultCollection.deleteMany({}),
+      accountCollection.deleteMany({})
+    ])
   })
 
   describe('save', () => {
@@ -78,6 +79,8 @@ describe('SurveyResult MongoDB Repository', () => {
       expect(surveyResult.answers[0].answer).toBe(survey.answers[0].answer)
       expect(surveyResult.answers[0].count).toBe(1)
       expect(surveyResult.answers[0].percent).toBe(100)
+      expect(surveyResult.answers[1].count).toBe(0)
+      expect(surveyResult.answers[1].percent).toBe(0)
     })
 
     test('should update survey result if it is not new', async () => {
@@ -101,6 +104,8 @@ describe('SurveyResult MongoDB Repository', () => {
       expect(surveyResult.answers[0].answer).toBe(survey.answers[1].answer)
       expect(surveyResult.answers[0].count).toBe(1)
       expect(surveyResult.answers[0].percent).toBe(100)
+      expect(surveyResult.answers[1].count).toBe(0)
+      expect(surveyResult.answers[1].percent).toBe(0)
     })
   })
 })
