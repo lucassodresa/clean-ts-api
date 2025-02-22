@@ -70,20 +70,19 @@ describe('SurveyResult MongoDB Repository', () => {
       const survey = await makeSurvey()
       const account = await makeAccount()
       const sut = makeSut()
-      const surveyResult = await sut.save({
+      await sut.save({
         surveyId: survey.id,
         accountId: account.id,
         answer: survey.answers[0].answer,
         date: new Date()
       })
 
+      const surveyResult = await surveyResultCollection.findOne({
+        surveyId: new ObjectId(survey.id),
+        accountId: new ObjectId(account.id)
+      })
+
       expect(surveyResult).toBeTruthy()
-      expect(String(surveyResult.surveyId)).toBe(survey.id)
-      expect(surveyResult.answers[0].answer).toBe(survey.answers[0].answer)
-      expect(surveyResult.answers[0].count).toBe(1)
-      expect(surveyResult.answers[0].percent).toBe(100)
-      expect(surveyResult.answers[1].count).toBe(0)
-      expect(surveyResult.answers[1].percent).toBe(0)
     })
 
     test('should update survey result if it is not new', async () => {
@@ -96,19 +95,22 @@ describe('SurveyResult MongoDB Repository', () => {
         date: new Date()
       })
       const sut = makeSut()
-      const surveyResult = await sut.save({
+      await sut.save({
         surveyId: survey.id,
         accountId: account.id,
         answer: survey.answers[1].answer,
         date: new Date()
       })
+
+      const surveyResult = await surveyResultCollection
+        .find({
+          surveyId: new ObjectId(survey.id),
+          accountId: new ObjectId(account.id)
+        })
+        .toArray()
+
       expect(surveyResult).toBeTruthy()
-      expect(String(surveyResult.surveyId)).toBe(survey.id)
-      expect(surveyResult.answers[0].answer).toBe(survey.answers[1].answer)
-      expect(surveyResult.answers[0].count).toBe(1)
-      expect(surveyResult.answers[0].percent).toBe(100)
-      expect(surveyResult.answers[1].count).toBe(0)
-      expect(surveyResult.answers[1].percent).toBe(0)
+      expect(surveyResult.length).toBe(1)
     })
   })
 
