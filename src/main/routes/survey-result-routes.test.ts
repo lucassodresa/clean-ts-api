@@ -47,7 +47,8 @@ describe('Survey Routes', () => {
         .put('/api/surveys/any_survey_id/results')
         .send({
           answer: 'any_answer'
-        }).expect(403)
+        })
+        .expect(403)
     })
 
     test('Should return 200 on save survey result with accessToken', async () => {
@@ -71,7 +72,16 @@ describe('Survey Routes', () => {
         .set('x-access-token', accessToken)
         .send({
           answer: 'Answer 1'
-        }).expect(200)
+        })
+        .expect(200)
+    })
+  })
+
+  describe('GET /surveys/:surveyId/results', () => {
+    test('Should return 403 on load survey result with no access token provided', async () => {
+      await request(app)
+        .get('/api/surveys/any_survey_id/results')
+        .expect(403)
     })
   })
 })
