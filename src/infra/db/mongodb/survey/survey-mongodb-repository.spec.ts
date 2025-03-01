@@ -1,8 +1,21 @@
 import { SurveyMongoDbRepository } from './survey-mongodb-repository'
 import { MongoHelper } from '../helpers/mongo-helper'
 import { Collection } from 'mongodb'
+import { AccountModel } from '@/domain/models/account'
 
 let surveyCollection: Collection
+let surveyResultCollection: Collection
+let accountCollection: Collection
+
+const makeAccount = async (): Promise<AccountModel> => {
+  const res = await accountCollection.insertOne({
+    name: 'any_name',
+    email: 'any_email@mail.com',
+    password: 'any_password'
+  })
+  const account = res.ops[0]
+  return MongoHelper.map(account)
+}
 
 const makeSut = (): SurveyMongoDbRepository => {
   return new SurveyMongoDbRepository()
@@ -19,7 +32,14 @@ describe('Survey MongoDB Repository', () => {
 
   beforeEach(async () => {
     surveyCollection = await MongoHelper.getCollection('surveys')
-    await surveyCollection.deleteMany({})
+    surveyResultCollection = await MongoHelper.getCollection('surveyResults')
+    accountCollection = await MongoHelper.getCollection('accounts')
+
+    await Promise.all([
+      surveyCollection.deleteMany({}),
+      surveyResultCollection.deleteMany({}),
+      accountCollection.deleteMany({})
+    ])
   })
 
   describe('add', () => {
@@ -47,7 +67,8 @@ describe('Survey MongoDB Repository', () => {
 
   describe('loadAll', () => {
     test('should load all surveys on success', async () => {
-      await surveyCollection.insertMany([
+      const account = await makeAccount()
+      const survey = await surveyCollection.insertMany([
         {
           question: 'any_question',
           answers: [
@@ -69,17 +90,28 @@ describe('Survey MongoDB Repository', () => {
           date: new Date()
         }
       ])
-
+      const surveyInserted = survey.ops[0]
+      const surveyResult = {
+        surveyId: surveyInserted._id,
+        accountId: MongoHelper.objectId(account.id),
+        answer: surveyInserted.answers[0].answer,
+        date: new Date()
+      }
+      await surveyResultCollection.insertOne(surveyResult)
       const sut = makeSut()
-      const surveys = await sut.loadAll()
+      const surveys = await sut.loadAll(account.id)
       expect(surveys.length).toBe(2)
       expect(surveys[0].id).toBeTruthy()
       expect(surveys[0].question).toBe('any_question')
+      expect(surveys[0].didAnswer).toBe(true)
       expect(surveys[1].question).toBe('other_question')
+      expect(surveys[1].didAnswer).toBe(false)
     })
+
     test('should load empty list', async () => {
+      const account = await makeAccount()
       const sut = makeSut()
-      const surveys = await sut.loadAll()
+      const surveys = await sut.loadAll(account.id)
       expect(surveys.length).toBe(0)
     })
   })
