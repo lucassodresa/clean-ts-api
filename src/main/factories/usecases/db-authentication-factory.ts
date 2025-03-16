@@ -1,4 +1,4 @@
-import env from '@/main/config/env'
+import { env } from '@/main/config/env'
 import { BcryptAdapter, JwtAdapter } from '@/infra/cryptography'
 import { AccountMongoDbRepository } from '@/infra/db/mongodb'
 import { DbAuthentication } from '@/data/usecases'

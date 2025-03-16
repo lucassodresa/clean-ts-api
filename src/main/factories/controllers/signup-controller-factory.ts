@@ -1,6 +1,5 @@
 
-import { makeSignUpValidation } from './signup-validation-factory'
-import { makeDbAddAccount, makeDbAuthentication, makeLogControllerDecorator } from '@/main/factories'
+import { makeSignUpValidation, makeDbAddAccount, makeDbAuthentication, makeLogControllerDecorator } from '@/main/factories'
 import { SignUpController } from '@/presentation/controllers'
 import { Controller } from '@/presentation/protocols'
 

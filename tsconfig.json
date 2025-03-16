@@ -5,11 +5,13 @@
     "target": "ES2019",
     "esModuleInterop": true,
     "sourceMap": true,
-    "rootDirs": ["src", "tests"],
-    "baseUrl": "src",
+    "rootDir":".",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["*"],
+      "@/*": ["src/*"],
+      "@/__tests__/*": ["__tests__/*"],
     }
   },
-  "include": ["src", "tests"],
+  "include": ["src", "__tests__"],
+  "exclude": []
 }

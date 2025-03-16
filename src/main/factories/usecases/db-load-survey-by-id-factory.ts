@@ -1,5 +1,5 @@
 import { SurveyMongoDbRepository } from '@/infra/db/mongodb'
-import { LoadSurveyById } from '@/domain/usecases/load-survey-by-id'
+import { LoadSurveyById } from '@/domain/usecases'
 import { DbLoadSurveyById } from '@/data/usecases'
 
 export const makeDbLoadSurveyById = (): LoadSurveyById => {
