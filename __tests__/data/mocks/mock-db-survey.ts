@@ -1,7 +1,7 @@
-import { AddSurveyRepository, LoadSurveyByIdRepository, LoadSurveysRepository } from '@/data/protocols'
-import { AddSurveyParams } from '@/domain/usecases'
-import { SurveyModel } from '@/domain/models'
 import { mockSurveyModel, mockSurveysModel } from '@/__tests__/domain/mocks'
+import { AddSurveyRepository, LoadSurveyByIdRepository, LoadSurveysRepository } from '@/data/protocols'
+import { SurveyModel } from '@/domain/models'
+import { AddSurveyParams } from '@/domain/usecases'
 
 export const mockAddSurveyRepository = (): AddSurveyRepository => {
   class AddSurveyRepositoryStub implements AddSurveyRepository {

@@ -1,8 +1,8 @@
-import { AddSurveyController } from '@/presentation/controllers'
-import { HttpRequest, Validation } from '@/presentation/protocols'
-import { badRequest, noContent, serverError } from '@/presentation/helpers'
-import { AddSurvey } from '@/domain/usecases'
 import { mockAddSurvey, mockValidation } from '@/__tests__/presentation/mocks'
+import { AddSurvey } from '@/domain/usecases'
+import { AddSurveyController } from '@/presentation/controllers'
+import { badRequest, noContent, serverError } from '@/presentation/helpers'
+import { HttpRequest, Validation } from '@/presentation/protocols'
 import MockDate from 'mockdate'
 
 const mockRequest = (): HttpRequest => ({

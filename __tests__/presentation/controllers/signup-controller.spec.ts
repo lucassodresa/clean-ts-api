@@ -1,9 +1,9 @@
+import { mockAddAccount, mockAuthentication, mockValidation } from '@/__tests__/presentation/mocks'
+import { AddAccount, Authentication } from '@/domain/usecases'
 import { SignUpController } from '@/presentation/controllers'
 import { EmailInUseError, ServerError } from '@/presentation/errors'
-import { HttpRequest, Validation } from '@/presentation/protocols'
 import { badRequest, forbidden, ok, serverError } from '@/presentation/helpers'
-import { AddAccount, Authentication } from '@/domain/usecases'
-import { mockAddAccount, mockAuthentication, mockValidation } from '@/__tests__/presentation/mocks'
+import { HttpRequest, Validation } from '@/presentation/protocols'
 
 const mockRequest = (): HttpRequest => (
   {

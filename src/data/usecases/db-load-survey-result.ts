@@ -1,4 +1,4 @@
-import { LoadSurveyResultRepository, LoadSurveyByIdRepository } from '@/data/protocols'
+import { LoadSurveyByIdRepository, LoadSurveyResultRepository } from '@/data/protocols'
 import { SurveyResultModel } from '@/domain/models'
 import { LoadSurveyResult } from '@/domain/usecases'
 

@@ -1,4 +1,4 @@
-import { makeLoginValidation, makeDbAuthentication, makeLogControllerDecorator } from '@/main/factories'
+import { makeDbAuthentication, makeLogControllerDecorator, makeLoginValidation } from '@/main/factories'
 import { LoginController } from '@/presentation/controllers'
 import { Controller } from '@/presentation/protocols'
 

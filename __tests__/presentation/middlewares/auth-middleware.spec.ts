@@ -1,9 +1,9 @@
-import { LoadAccountByToken } from '@/domain/usecases'
-import { HttpRequest } from '@/presentation/protocols'
-import { AuthMiddleware } from '@/presentation/middlewares'
-import { forbidden, ok, serverError } from '@/presentation/helpers'
-import { AccessDeniedError } from '@/presentation/errors'
 import { mockLoadAccountByToken } from '@/__tests__/presentation/mocks'
+import { LoadAccountByToken } from '@/domain/usecases'
+import { AccessDeniedError } from '@/presentation/errors'
+import { forbidden, ok, serverError } from '@/presentation/helpers'
+import { AuthMiddleware } from '@/presentation/middlewares'
+import { HttpRequest } from '@/presentation/protocols'
 
 const mockRequest = (): HttpRequest => ({
   headers: { 'x-access-token': 'any_token' }

@@ -1,5 +1,5 @@
-import { ComapreFieldsValidation } from '@/validation/validators'
 import { InvalidParamError } from '@/presentation/errors'
+import { ComapreFieldsValidation } from '@/validation/validators'
 
 const makeSut = (): ComapreFieldsValidation => {
   return new ComapreFieldsValidation('field', 'fieldToCompare')

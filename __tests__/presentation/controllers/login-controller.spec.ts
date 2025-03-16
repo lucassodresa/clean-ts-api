@@ -1,8 +1,8 @@
-import { LoginController } from '@/presentation/controllers'
-import { HttpRequest, Validation } from '@/presentation/protocols'
-import { badRequest, ok, serverError, unauthorized } from '@/presentation/helpers'
-import { Authentication } from '@/domain/usecases'
 import { mockAuthentication, mockValidation } from '@/__tests__/presentation/mocks'
+import { Authentication } from '@/domain/usecases'
+import { LoginController } from '@/presentation/controllers'
+import { badRequest, ok, serverError, unauthorized } from '@/presentation/helpers'
+import { HttpRequest, Validation } from '@/presentation/protocols'
 
 const mockRequest = (): HttpRequest => (
   {

@@ -1,7 +1,7 @@
 
 import {
-  HashComparer,
   Encrypter,
+  HashComparer,
   LoadAccountByEmailRepository,
   UpdateAccessTokenRepository
 } from '@/data/protocols'

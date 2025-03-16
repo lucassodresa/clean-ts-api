@@ -1,9 +1,9 @@
-import { LogControllerDecorator } from '@/main/decorators'
-import { Controller, HttpRequest, HttpResponse } from '@/presentation/protocols'
-import { ok, serverError } from '@/presentation/helpers'
-import { LogErrorRepository } from '@/data/protocols'
-import { mockAccountModel } from '@/__tests__/domain/mocks'
 import { mockLogErrorRepository } from '@/__tests__/data/mocks'
+import { mockAccountModel } from '@/__tests__/domain/mocks'
+import { LogErrorRepository } from '@/data/protocols'
+import { LogControllerDecorator } from '@/main/decorators'
+import { ok, serverError } from '@/presentation/helpers'
+import { Controller, HttpRequest, HttpResponse } from '@/presentation/protocols'
 
 const mockServerError = (): HttpResponse => {
   const fakeError = new Error()

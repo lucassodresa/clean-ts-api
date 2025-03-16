@@ -1,7 +1,7 @@
-import { forbidden, ok, serverError } from '@/presentation/helpers'
-import { InvalidParamError } from '@/presentation/errors'
-import { Controller, HttpRequest, HttpResponse } from '@/presentation/protocols'
 import { LoadSurveyById, SaveSurveyResult } from '@/domain/usecases'
+import { InvalidParamError } from '@/presentation/errors'
+import { forbidden, ok, serverError } from '@/presentation/helpers'
+import { Controller, HttpRequest, HttpResponse } from '@/presentation/protocols'
 
 export class SaveSurveyResultController implements Controller {
   constructor (

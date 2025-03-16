@@ -1,6 +1,6 @@
-import { SurveyResultMongoDbRepository, MongoHelper } from '@/infra/db/mongodb'
+import { AccountModel, SurveyModel } from '@/domain/models'
+import { MongoHelper, SurveyResultMongoDbRepository } from '@/infra/db/mongodb'
 import { Collection, ObjectId } from 'mongodb'
-import { SurveyModel, AccountModel } from '@/domain/models'
 
 let surveyCollection: Collection
 let surveyResultCollection: Collection

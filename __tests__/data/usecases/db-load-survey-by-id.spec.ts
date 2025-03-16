@@ -1,7 +1,7 @@
-import { DbLoadSurveyById } from '@/data/usecases'
-import { LoadSurveyByIdRepository } from '@/data/protocols'
 import { mockLoadSurveyByIdRepository } from '@/__tests__/data/mocks'
 import { mockSurveyModel } from '@/__tests__/domain/mocks'
+import { LoadSurveyByIdRepository } from '@/data/protocols'
+import { DbLoadSurveyById } from '@/data/usecases'
 import MockDate from 'mockdate'
 
   type SutTypes = {

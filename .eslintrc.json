@@ -5,6 +5,28 @@
   },
   "rules": {
     "@typescript-eslint/strict-boolean-expressions": "off",
-    "@typescript-eslint/consistent-type-definitions": "off"
+    "@typescript-eslint/consistent-type-definitions": "off",
+    "sort-imports": [
+      "error",
+      { "ignoreCase": true, "ignoreDeclarationSort": true }
+    ],
+    "import/order": [
+      1,
+      {
+        "groups": [
+          "internal",
+          "builtin",
+          "external",
+          "index",
+          "sibling",
+          "parent"
+        ],
+        "pathGroups": [{ "pattern": "@/**", "group": "internal" }],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
   }
 }

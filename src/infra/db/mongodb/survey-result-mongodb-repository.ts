@@ -1,9 +1,9 @@
-import { MongoHelper, QueryBuilder } from '@/infra/db/mongodb'
+import { LoadSurveyResultRepository, SaveSurveyResultRepository } from '@/data/protocols'
 import { SurveyResultModel } from '@/domain/models'
 import { SaveSurveyResultParams } from '@/domain/usecases'
-import { LoadSurveyResultRepository, SaveSurveyResultRepository } from '@/data/protocols'
-import { ObjectId } from 'mongodb'
+import { MongoHelper, QueryBuilder } from '@/infra/db/mongodb'
 import round from 'mongo-round'
+import { ObjectId } from 'mongodb'
 
 export class SurveyResultMongoDbRepository implements SaveSurveyResultRepository, LoadSurveyResultRepository {
   async save (data: SaveSurveyResultParams): Promise<void> {

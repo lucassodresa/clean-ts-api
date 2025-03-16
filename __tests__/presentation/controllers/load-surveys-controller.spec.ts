@@ -1,9 +1,9 @@
+import { mockSurveysModel } from '@/__tests__/domain/mocks'
+import { mockLoadSurveys } from '@/__tests__/presentation/mocks'
+import { LoadSurveys } from '@/domain/usecases'
 import { LoadSurveysController } from '@/presentation/controllers'
 import { noContent, ok, serverError } from '@/presentation/helpers'
 import { HttpRequest } from '@/presentation/protocols'
-import { mockLoadSurveys } from '@/__tests__/presentation/mocks'
-import { mockSurveysModel } from '@/__tests__/domain/mocks'
-import { LoadSurveys } from '@/domain/usecases'
 import MockDate from 'mockdate'
 
 const mockRequest = (): HttpRequest => ({
