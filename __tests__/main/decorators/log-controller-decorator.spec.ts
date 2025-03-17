@@ -3,7 +3,7 @@ import { mockAccountModel } from '@/__tests__/domain/mocks'
 import { LogErrorRepository } from '@/data/protocols'
 import { LogControllerDecorator } from '@/main/decorators'
 import { ok, serverError } from '@/presentation/helpers'
-import { Controller, HttpRequest, HttpResponse } from '@/presentation/protocols'
+import { Controller, HttpResponse } from '@/presentation/protocols'
 
 const mockServerError = (): HttpResponse => {
   const fakeError = new Error()
@@ -11,20 +11,17 @@ const mockServerError = (): HttpResponse => {
   return serverError(fakeError)
 }
 
-const mockRequest = (): HttpRequest => (
+const mockRequest = (): any => (
   {
     body: {
-      name: 'any_name',
-      email: 'any_email@example.com',
-      password: 'any_password',
-      passwordConfirmation: 'any_password'
+      some_key: 'any_value'
     }
   }
 )
 
 const makeController = (): Controller => {
   class ControllerStub implements Controller {
-    async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
+    async handle (request: any): Promise<HttpResponse> {
       return Promise.resolve(ok(mockAccountModel()))
     }
   }
