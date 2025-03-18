@@ -1,9 +1,6 @@
+import { AccountModel } from '@/domain/models'
 
-export type AddAccountParams = {
-  name: string
-  email: string
-  password: string
-}
+export type AddAccountParams = Omit<AccountModel, 'id'>
 export type AddAccountResult = boolean
 
 export type AddAccount = {
