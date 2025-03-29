@@ -1,8 +1,8 @@
-import { DbLoadSurveyById } from '@/data/usecases'
-import { LoadSurveyById } from '@/domain/usecases'
+import { DbCheckSurveyById } from '@/data/usecases'
+import { CheckSurveyById } from '@/domain/usecases'
 import { SurveyMongoDbRepository } from '@/infra/db/mongodb'
 
-export const makeDbLoadSurveyById = (): LoadSurveyById => {
+export const makeDbCheckSurveyById = (): CheckSurveyById => {
   const surveyMongoDbRepository = new SurveyMongoDbRepository()
-  return new DbLoadSurveyById(surveyMongoDbRepository)
+  return new DbCheckSurveyById(surveyMongoDbRepository)
 }

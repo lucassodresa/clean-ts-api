@@ -1,4 +1,5 @@
 import { MongoHelper, SurveyMongoDbRepository } from '@/infra/db/mongodb'
+import FakeObjectId from 'bson-objectid'
 import { Collection } from 'mongodb'
 
 let surveyCollection: Collection
@@ -132,6 +133,32 @@ describe('Survey MongoDB Repository', () => {
       const survey = await sut.loadById(id)
       expect(survey).toBeTruthy()
       expect(survey.id).toBeTruthy()
+    })
+  })
+
+  describe('checkById', () => {
+    test('should return true if survey exists', async () => {
+      const response = await surveyCollection.insertOne(
+        {
+          question: 'any_question',
+          answers: [
+            {
+              image: 'any_image',
+              answer: 'any_answer'
+            }
+          ],
+          date: new Date()
+        })
+      const id = response.ops[0]._id
+      const sut = makeSut()
+      const exists = await sut.loadById(id)
+      expect(exists).toBeTruthy()
+    })
+
+    test('should return false if survey not exists', async () => {
+      const sut = makeSut()
+      const exists = await sut.checkById(FakeObjectId.generate())
+      expect(exists).toBeFalsy()
     })
   })
 })
