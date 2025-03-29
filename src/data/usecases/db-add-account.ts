@@ -14,10 +14,10 @@ export class DbAddAccount implements AddAccount {
       return false
     }
     const hashedPassword = await this.hasher.hash(accountData.password)
-    const newAccount = await this.addAccountRepository.add({
+    const isValid = await this.addAccountRepository.add({
       ...accountData,
       password: hashedPassword
     })
-    return Boolean(newAccount)
+    return isValid
   }
 }

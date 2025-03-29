@@ -1,5 +1,5 @@
 import { mockEncrypter, mockHashComparer, mockLoadAccountByEmailRepository, mockUpdateAccessTokenRepository } from '@/__tests__/data/mocks'
-import { mockAccountModel, mockAuthentication } from '@/__tests__/domain/mocks'
+import { mockAuthentication } from '@/__tests__/domain/mocks'
 import { Encrypter, HashComparer, LoadAccountByEmailRepository, UpdateAccessTokenRepository } from '@/data/protocols'
 import { DbAuthentication } from '@/data/usecases'
 
@@ -56,7 +56,12 @@ describe('DbAuthentication UseCase', () => {
     const { sut, hashComparerStub } = makeSut()
     const compareSpy = jest.spyOn(hashComparerStub, 'compare')
     const fakeAuthentication = mockAuthentication()
-    const fakeAccount = mockAccountModel()
+    const fakeAccount = {
+      id: 'any_id',
+      name: 'any_name',
+      email: 'any_email@mail.com',
+      password: 'any_password'
+    }
     await sut.auth(fakeAuthentication)
     expect(compareSpy).toBeCalledWith(fakeAuthentication.password, fakeAccount.password)
   })
@@ -79,7 +84,12 @@ describe('DbAuthentication UseCase', () => {
     const { sut, encrypterStub } = makeSut()
     const generateSpy = jest.spyOn(encrypterStub, 'encrypt')
     const fakeAuthentication = mockAuthentication()
-    const fakeAccount = mockAccountModel()
+    const fakeAccount = {
+      id: 'any_id',
+      name: 'any_name',
+      email: 'any_email@mail.com',
+      password: 'any_password'
+    }
     await sut.auth(fakeAuthentication)
     expect(generateSpy).toBeCalledWith(fakeAccount.id)
   })
@@ -96,14 +106,19 @@ describe('DbAuthentication UseCase', () => {
     const fakeAuthentication = mockAuthentication()
     const { accessToken, name } = await sut.auth(fakeAuthentication)
     expect(accessToken).toBe('any_token')
-    expect(name).toBe(mockAccountModel().name)
+    expect(name).toBe('any_name')
   })
 
   test('Should call UpdateAccessTokenRepository with correct values', async () => {
     const { sut, updateAccessTokenRepositoryStub } = makeSut()
     const updateAccessTokenSpy = jest.spyOn(updateAccessTokenRepositoryStub, 'updateAccessToken')
     const fakeAuthentication = mockAuthentication()
-    const fakeAccount = mockAccountModel()
+    const fakeAccount = {
+      id: 'any_id',
+      name: 'any_name',
+      email: 'any_email@mail.com',
+      password: 'any_password'
+    }
     await sut.auth(fakeAuthentication)
     expect(updateAccessTokenSpy).toBeCalledWith(fakeAccount.id, 'any_token')
   })

@@ -1,11 +1,9 @@
-import { mockAccountModel } from '@/__tests__/domain/mocks'
-import { AddAccountRepository, AddAccountRepositoryParams, AddAccountRepositoryResult, LoadAccountByEmailRepository, LoadAccountByTokenRepository, LoadAccountByTokenRepositoryResult, UpdateAccessTokenRepository } from '@/data/protocols'
-import { AccountModel } from '@/domain/models'
+import { AddAccountRepository, AddAccountRepositoryParams, AddAccountRepositoryResult, LoadAccountByEmailRepository, LoadAccountByEmailRepositoryResult, LoadAccountByTokenRepository, LoadAccountByTokenRepositoryResult, UpdateAccessTokenRepository } from '@/data/protocols'
 
 export const mockAddAccountRepository = (): AddAccountRepository => {
   class AddAccountRepositoryStub implements AddAccountRepository {
     async add (accountData: AddAccountRepositoryParams): Promise<AddAccountRepositoryResult> {
-      return Promise.resolve(mockAccountModel())
+      return Promise.resolve(true)
     }
   }
   return new AddAccountRepositoryStub()
@@ -13,8 +11,9 @@ export const mockAddAccountRepository = (): AddAccountRepository => {
 
 export const mockLoadAccountByEmailRepository = (): LoadAccountByEmailRepository => {
   class LoadAccountByEmailRepositoryStub implements LoadAccountByEmailRepository {
-    async loadByEmail (email: string): Promise<AccountModel> {
-      return Promise.resolve(mockAccountModel())
+    async loadByEmail (email: string): Promise<LoadAccountByEmailRepositoryResult> {
+      const result = { id: 'any_id', name: 'any_name', password: 'any_password' }
+      return Promise.resolve(result)
     }
   }
   return new LoadAccountByEmailRepositoryStub()
@@ -23,7 +22,13 @@ export const mockLoadAccountByEmailRepository = (): LoadAccountByEmailRepository
 export const mockLoadAccountByTokenRepository = (): LoadAccountByTokenRepository => {
   class LoadAccountByTokenRepositoryStub implements LoadAccountByTokenRepository {
     async loadByToken (token: string, role?: string): Promise<LoadAccountByTokenRepositoryResult> {
-      return Promise.resolve(mockAccountModel())
+      const result = {
+        id: 'any_id',
+        name: 'any_name',
+        email: 'any_email@mail.com',
+        password: 'any_password'
+      }
+      return Promise.resolve(result)
     }
   }
   return new LoadAccountByTokenRepositoryStub()
