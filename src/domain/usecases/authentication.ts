@@ -10,5 +10,5 @@ export type AuthenticationResult = {
 }
 
 export type Authentication = {
-  auth (authentication: AuthenticationParams): Promise<AuthenticationResult>
+  auth: (authentication: AuthenticationParams) => Promise<AuthenticationResult>
 }

@@ -1,5 +1,5 @@
 
 export type CheckSurveyByIdRepositoryResult = boolean
 export interface CheckSurveyByIdRepository {
-  checkById (id: string): Promise<CheckSurveyByIdRepositoryResult>
+  checkById: (id: string) => Promise<CheckSurveyByIdRepositoryResult>
 }

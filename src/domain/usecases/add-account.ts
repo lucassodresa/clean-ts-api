@@ -6,5 +6,5 @@ export type AddAccountParams = {
 export type AddAccountResult = boolean
 
 export type AddAccount = {
-  add (account: AddAccountParams): Promise<AddAccountResult>
+  add: (account: AddAccountParams) => Promise<AddAccountResult>
 }

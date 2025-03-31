@@ -6,5 +6,5 @@ export type LoadAccountByEmailRepositoryResult = {
 }
 
 export interface LoadAccountByEmailRepository {
-  loadByEmail (email: string): Promise<LoadAccountByEmailRepositoryResult>
+  loadByEmail: (email: string) => Promise<LoadAccountByEmailRepositoryResult>
 }

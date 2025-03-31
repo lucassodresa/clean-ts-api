@@ -9,5 +9,5 @@ export type SaveSurveyResultParams = {
 
 export type SaveSurveyResultResult = SurveyResultModel
 export type SaveSurveyResult = {
-  save (data: SaveSurveyResultParams): Promise<SaveSurveyResultResult>
+  save: (data: SaveSurveyResultParams) => Promise<SaveSurveyResultResult>
 }
