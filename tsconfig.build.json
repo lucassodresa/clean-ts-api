@@ -1,6 +1,4 @@
 {
   "extends": "./tsconfig.json",
-  "rootDir":"src",
-  "baseUrl": "src",
   "exclude": ["__tests__"]
 }
