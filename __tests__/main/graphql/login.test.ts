@@ -48,5 +48,15 @@ describe('Auth GraphQL', () => {
       expect(response.data.login.accessToken).toBeDefined()
       expect(response.data.login.name).toBe('any_name')
     })
+
+    test('Should return UnauthorizedError on invalid credentials', async () => {
+      const { query } = createTestClient({ apolloServer })
+      const response: any = await query(loginQuery, {
+        variables:
+        { email: 'any_email@mail.com', password: '123' }
+      })
+      expect(response.data).toBeFalsy()
+      expect(response.errors[0].message).toBe('Unauthorized')
+    })
   })
 })
