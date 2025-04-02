@@ -15,8 +15,8 @@
     "lint:fix": "eslint --fix",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand --logHeapUsage",
     "test:verbose": "jest --passWithNoTests --runInBand",
-    "test:unit": "npm run test:verbose -- --watchAll -c jest-unit-config.js",
-    "test:integration": "npm test -- --watchAll -c jest-integration-config.js",
+    "test:unit": "npm run test:verbose -- --watch -c jest-unit-config.js",
+    "test:integration": "npm test -- --watch -c jest-integration-config.js",
     "test:staged": "npm test -- --findRelatedTests",
     "test:ci": "npm test -- --coverage"
   },
