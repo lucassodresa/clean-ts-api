@@ -13,7 +13,7 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup
         with:
-          node-version: 12.x
+          node-version: 14.x
 
       - name: Lint
         run: npm run lint:all
@@ -27,7 +27,7 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup
         with:
-          node-version: 12.x
+          node-version: 14.x
 
       - name: Test CI
         run: npm run test:ci
